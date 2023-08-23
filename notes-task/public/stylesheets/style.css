@@ -1,0 +1,27 @@
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background:#deef4d;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    #deef4d,
+    rgba(80, 139, 252, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    #a6ef4d,
+    rgba(80, 139, 252, 1)
+  );
+}
+
+.mask-custom {
+  background: #deef4d;
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(135, 203, 51, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}

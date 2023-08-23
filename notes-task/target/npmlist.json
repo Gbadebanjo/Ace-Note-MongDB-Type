@@ -1,0 +1,1 @@
+{"version":"0.0.0","name":"week5-009","dependencies":{"@types/sequelize":{"version":"4.28.15"},"cookie-parser":{"version":"1.4.6"},"debug":{"version":"2.6.9"},"express":{"version":"4.16.4"},"http-errors":{"version":"1.6.3"},"jade":{"version":"1.11.0"},"morgan":{"version":"1.9.1"},"sequelize":{"version":"6.32.1"},"sqlite3":{"version":"5.1.6"}}}

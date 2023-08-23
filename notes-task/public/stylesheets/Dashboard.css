@@ -1,0 +1,44 @@
+:root {
+    --background-color: #deef4d;
+    --bs-primary-rgb: #12296;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--bs-primary-rgb);
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Unbounded', cursive;
+    font-weight: 800;
+}
+
+.container-fluid-custom {
+    max-width: 1600px;
+}
+
+.btn {
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    border-radius:2rem;
+    /* background-color: rgb(19, 19, 97); */
+}
+
+.pagination {
+    --bs-pagination-color: var(--bs-primary-rgb);
+    --bs-pagination-active-bg: var(--bs-primary-rgb);
+    --bs-pagination-active-border-color: var(--bs-primary-rgb);
+}
+
+/* @media (min-width: 1200px) {
+   .home {
+    background:
+    url('../img/running-lady.png') left bottom no-repeat,
+    url('../img/black-man-sitting-on-stool.png') right bottom no-repeat,
+    var(--background-color);
+    ;
+}
+} */
