@@ -146,10 +146,12 @@ exports.updateUser = updateUser;
 //Dashboard controller
 function dashboard(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(req.userKey.id);
+        console.log('calling dashboard...');
+        // console.log(req.userKey.id)
         const usersNote = yield getNotesById(req.userKey.id);
         res.render("Dashboard", {
             username: req.userKey.user.username,
+            userId: req.userKey.id,
             usersNote
         });
     });

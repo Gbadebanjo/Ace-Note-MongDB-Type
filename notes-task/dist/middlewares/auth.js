@@ -39,7 +39,7 @@ function auth(req, res, next) {
                 req.userKey = decodedToken;
                 const { id } = req.userKey;
                 const userModel = yield getUserById(id);
-                console.log(userModel);
+                // console.log(userModel)
                 req.userKey.user = userModel;
                 next();
             }

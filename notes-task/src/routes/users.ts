@@ -9,11 +9,14 @@ router.get('/dashboard', dashboard);
 // usersNote
 router.get('/dashboard/:userId/notes', usersNote);
 
-// /users/
+
+// /users all users/
 router.get("/displayAllUsers", displayAllUsers);
 
+// Delete user
 router.delete("/:id", deleteUser);
 
+// Update user
 router.put("/:id", updateUser);
 
 

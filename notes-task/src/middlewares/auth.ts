@@ -29,7 +29,7 @@ export async function auth(
       req.userKey = decodedToken;
       const { id } = req.userKey;
       const userModel = await getUserById(id);
-      console.log(userModel)
+      // console.log(userModel)
       req.userKey.user = userModel;
       next();
     } catch (err: any) {

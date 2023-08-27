@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { User, } from "../model/user";
 import { Note } from "../model/note";
-import { v4 as uuidv4 } from "uuid";
 import { signupUserSchema, options, loginUserSchema } from "../utils/utils";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -130,16 +129,19 @@ export async function updateUser(req: Request, res: Response) {
   }
 }
 
+
+
+
 //Dashboard controller
 export async  function dashboard(req: Request, res: Response) {  
-  console.log(req.userKey.id)
+  console.log('calling dashboard...')
+  // console.log(req.userKey.id)
   const usersNote = await getNotesById(req.userKey.id);
   res.render("Dashboard", {
    username: req.userKey.user.username,
+   userId: req.userKey.id,
    usersNote
   })
-
-
 }
 
 // GET user's notes
@@ -162,6 +164,4 @@ async function getNotesById(id:string){
   console.log(notes)
   return notes
 }
-
-
 

@@ -9,26 +9,51 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteNote = exports.updateNote = exports.getAllNotes = exports.createNote = void 0;
-const uuid_1 = require("uuid");
+exports.deleteNote = exports.updateNote = exports.getAllNotes = exports.createNote = exports.viewNote = void 0;
 const note_1 = require("../model/note");
+function viewNote(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            // console.log(req.params.id)
+            const note = yield note_1.Note.findById({ _id: req.params.id });
+            // console.log(note)
+            // console.log("bravo")
+            if (note) {
+                res.render('view-note', {
+                    userId: note.userId,
+                    noteID: req.params.id,
+                    note,
+                    id: note._id
+                    // layout: '../views/view-note',
+                });
+            }
+            else {
+                res.status(404).json({ message: 'Note not found' });
+            }
+        }
+        catch (error) {
+            res.status(500).json({ message: error.message });
+        }
+    });
+}
+exports.viewNote = viewNote;
+;
 //Create note request
 function createNote(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log('calling create note...');
+        if (req.method === 'GET')
+            return res.render('create-note');
         try {
             // To get id of user creating note
             const verified = req.userKey;
-            const id = (0, uuid_1.v4)();
+            // console.log(verified)
             // const { title, description, dueDate, status } = req.body;
-            const newNote = yield note_1.Note.create(Object.assign(Object.assign({ id }, req.body), { userId: verified.id }));
-            res.status(201).json({
-                data: {
-                    newNote,
-                },
-            });
+            const newNote = yield note_1.Note.create(Object.assign(Object.assign({}, req.body), { userId: verified.id }));
+            return res.redirect('/users/dashboard');
         }
         catch (err) {
-            console.log(err);
+            res.status(400).json({ error: err.message });
         }
     });
 }
@@ -55,12 +80,15 @@ exports.getAllNotes = getAllNotes;
 function updateNote(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const id = req.params.id;
-        const note = yield note_1.Note.findOne({ where: { id: id } });
+        const note = yield note_1.Note.findOne({ _id: id });
         const update = req.body;
         if (note) {
+            // Object.assign(note, update)
             Object.assign(note, Object.assign(Object.assign({}, note), update));
+            console.log('updated note: ', note);
             yield note.save();
-            return res.redirect(200, `/note/${id}`);
+            // return res.redirect(200, `/note/${id}`);
+            return res.redirect('/users/dashboard');
         }
         else {
             res.json({ msg: "Note not found" });
@@ -72,10 +100,10 @@ exports.updateNote = updateNote;
 function deleteNote(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const id = req.params.id;
-        const note = yield note_1.Note.findOne({ where: { id: id } });
+        const note = yield note_1.Note.findOne({ _id: id });
         if (note) {
             yield note.deleteOne();
-            res.json({ msg: "Note deleted" });
+            res.redirect('/users/dashboard');
         }
         else {
             res.status(404).send("Note not found");

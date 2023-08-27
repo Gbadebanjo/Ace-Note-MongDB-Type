@@ -10,8 +10,10 @@ const router = express_1.default.Router();
 router.get('/dashboard', user_1.dashboard);
 // usersNote
 router.get('/dashboard/:userId/notes', user_1.usersNote);
-// /users/
+// /users all users/
 router.get("/displayAllUsers", user_1.displayAllUsers);
+// Delete user
 router.delete("/:id", user_1.deleteUser);
+// Update user
 router.put("/:id", user_1.updateUser);
 exports.default = router;
